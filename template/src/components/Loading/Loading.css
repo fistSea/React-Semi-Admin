@@ -1,0 +1,41 @@
+/* Loading组件样式 */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  padding: 20px;
+}
+
+.loading-spinner {
+  border: 3px solid var(--semi-color-border);
+  border-top: 3px solid var(--semi-color-primary);
+  border-radius: 50%;
+  animation: loading-spin 1s linear infinite;
+}
+
+.loading-text {
+  color: var(--semi-color-text-1);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+@keyframes loading-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* 主题适配 */
+body[theme-mode="dark"] .loading-spinner {
+  border-color: var(--semi-color-border);
+  border-top-color: var(--semi-color-primary);
+}
+
+body[theme-mode="dark"] .loading-text {
+  color: var(--semi-color-text-0);
+}

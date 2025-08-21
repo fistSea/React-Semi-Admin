@@ -1,0 +1,31 @@
+.about {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.features-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.feature-item {
+  transition: transform 0.2s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-2px);
+}
+
+.feature-item h4 {
+  margin: 0 0 8px 0;
+  color: var(--semi-color-text-0);
+}
+
+.feature-item p {
+  margin: 0;
+  color: var(--semi-color-text-1);
+  font-size: 14px;
+  line-height: 1.5;
+}

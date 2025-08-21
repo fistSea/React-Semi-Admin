@@ -1,0 +1,285 @@
+// 顶部导航 + 内容区布局的SCSS样式
+.frame {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh; // 改为固定视口高度
+  background: var(--semi-color-bg-0);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  overflow: hidden; // 防止整体页面滚动
+
+  // 顶部导航栏
+  .topNav {
+    position: fixed; // 固定在顶部
+    top: 0;
+    left: 0;
+    right: 0;
+    flex-shrink: 0;
+    width: 100%;
+    height: 60px;
+    background: var(--semi-color-bg-1);
+    border-bottom: 1px solid var(--semi-color-border);
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06); // 添加阴影效果
+
+    // Semi UI Navigation 样式覆盖
+    :global(.semi-navigation) {
+      border: none !important;
+      height: 60px;
+    }
+
+    :global(.semi-navigation-header) {
+      padding: 0 24px;
+    }
+
+    :global(.semi-navigation-footer) {
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+
+      span {
+        color: var(--semi-color-text-0);
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+
+    // 修复图标与文字对齐问题
+    :global(.semi-navigation-item) {
+      height: 60px;
+      line-height: 60px;
+      border-radius: 0;
+      margin: 0;
+      padding: 0 16px;
+      transition: all 0.2s ease;
+      border-bottom: 3px solid transparent;
+      display: flex !important;
+      align-items: center !important;
+
+      // 图标样式
+      :global(.semi-icon) {
+        margin-right: 8px !important;
+        vertical-align: middle !important;
+        display: inline-flex !important;
+        align-items: center !important;
+      }
+
+      // 文字样式
+      :global(.semi-navigation-item-text) {
+        line-height: 1 !important;
+        vertical-align: middle !important;
+        display: inline-flex !important;
+        align-items: center !important;
+      }
+
+      &:hover {
+        background: var(--semi-color-fill-0);
+
+        // hover时图标颜色不变，保持彩色
+        :global(.semi-icon) {
+          opacity: 0.8;
+        }
+      }
+    }
+
+    :global(.semi-navigation-item-selected) {
+      background: var(--semi-color-primary-light-default) !important;
+      border-bottom-color: var(--semi-color-primary) !important;
+
+      :global(.semi-navigation-item-text) {
+        color: var(--semi-color-primary) !important;
+        font-weight: 600;
+      }
+
+      // 选中时图标保持彩色，不被覆盖
+      :global(.semi-icon) {
+        opacity: 1 !important;
+      }
+    }
+
+    // 子菜单样式
+    :global(.semi-navigation-sub) {
+      background: var(--semi-color-bg-2) !important;
+      border: 1px solid var(--semi-color-border);
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-top: 4px;
+
+      :global(.semi-navigation-item) {
+        height: 40px;
+        line-height: 40px;
+        border-bottom: none;
+        margin: 2px 4px;
+        border-radius: 4px;
+        padding: 0 12px;
+
+        &:hover {
+          background: var(--semi-color-fill-0);
+        }
+      }
+
+      :global(.semi-navigation-item-selected) {
+        background: var(--semi-color-primary-light-default) !important;
+        border-bottom: none !important;
+      }
+    }
+  }
+
+  // 内容区域
+  .contentArea {
+    flex: 1;
+    width: 100%;
+    height: calc(100vh - 60px); // 减去顶部导航栏高度
+    margin-top: 60px; // 给固定的顶部导航栏让出空间
+    padding: 24px;
+    background: var(--semi-color-bg-0);
+    overflow-y: auto; // 只允许垂直滚动
+    overflow-x: hidden; // 隐藏水平滚动条
+
+    // 自定义滚动条样式
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--semi-color-fill-0);
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--semi-color-border);
+      border-radius: 4px;
+
+      &:hover {
+        background: var(--semi-color-text-2);
+      }
+    }
+
+    // 内容区域内的页面样式
+    .pageWrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: var(--semi-color-bg-1);
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      min-height: calc(100vh - 120px); // 确保内容足够高以产生滚动
+    }
+  }
+}
+
+// 响应式设计
+@media (max-width: 1200px) {
+  .frame {
+    .contentArea {
+      padding: 16px;
+
+      .pageWrapper {
+        padding: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .frame {
+    .topNav {
+      :global(.semi-navigation-header) {
+        padding: 0 16px;
+      }
+
+      :global(.semi-navigation-footer) {
+        padding: 0 16px;
+      }
+
+      :global(.semi-navigation-item) {
+        padding: 0 12px;
+        font-size: 14px;
+      }
+    }
+
+    .contentArea {
+      padding: 12px;
+
+      .pageWrapper {
+        padding: 16px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .frame {
+    .topNav {
+      :global(.semi-navigation-header) {
+        padding: 0 12px;
+
+        .semi-navigation-header-text {
+          display: none; // 在小屏幕上隐藏标题文字
+        }
+      }
+
+      :global(.semi-navigation-footer) {
+        padding: 0 12px;
+
+        span {
+          display: none; // 在小屏幕上隐藏用户名
+        }
+      }
+
+      :global(.semi-navigation-item) {
+        padding: 0 8px;
+        font-size: 12px;
+      }
+    }
+
+    .contentArea {
+      padding: 8px;
+
+      .pageWrapper {
+        padding: 12px;
+      }
+    }
+  }
+}
+
+// 暗黑主题支持
+@media (prefers-color-scheme: dark) {
+  .frame {
+    background: var(--semi-color-bg-0);
+
+    .topNav {
+      background: var(--semi-color-bg-1);
+      border-bottom-color: var(--semi-color-border);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+      :global(.semi-navigation-sub) {
+        background: var(--semi-color-bg-2) !important;
+        border-color: var(--semi-color-border);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    .contentArea {
+      background: var(--semi-color-bg-0);
+
+      .pageWrapper {
+        background: var(--semi-color-bg-1);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+}
+
+// 加载动画
+.contentArea {
+  transition: all 0.3s ease;
+
+  &.loading {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+}

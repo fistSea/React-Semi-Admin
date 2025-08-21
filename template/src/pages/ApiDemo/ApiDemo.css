@@ -1,0 +1,45 @@
+/* API演示页面样式 */
+.api-demo-page {
+  padding: 24px;
+  background: var(--semi-color-bg-0);
+  min-height: 100vh;
+}
+
+.api-demo-card {
+  margin-bottom: 24px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.api-demo-stats-table {
+  margin-top: 16px;
+}
+
+.api-demo-upload-area {
+  border: 2px dashed var(--semi-color-border);
+  border-radius: 6px;
+  padding: 24px;
+  text-align: center;
+  background: var(--semi-color-bg-1);
+  transition: all 0.3s ease;
+}
+
+.api-demo-upload-area:hover {
+  border-color: var(--semi-color-primary);
+  background: var(--semi-color-primary-light-default);
+}
+
+.api-demo-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.api-demo-feature-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--semi-color-border);
+}
+
+.api-demo-feature-list li:last-child {
+  border-bottom: none;
+}
